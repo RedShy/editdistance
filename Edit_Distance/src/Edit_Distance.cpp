@@ -4,6 +4,7 @@ using namespace std;
 
 int minimum(int a, int b, int c)
 {
+
 	int min = a;
 
 	if (b < min) min = b;
@@ -59,21 +60,21 @@ int edit_distance(string s1, string s2)
 	{
 		m[0][j] = j;
 	}
-	int cost_of_substitution = 0;
+
 	for (int i = 1; i < rows; i++)
 	{
 		for (int j = 1; j < cols; j++)
 		{
 			if (s1[i - 1] == s2[j - 1])
 			{
-				cost_of_substitution = 0;
+				m[i][j] = m[i - 1][j - 1];
 			}
 			else
 			{
-				cost_of_substitution = 1;
+				m[i][j] = minimum(m[i - 1][j - 1] + 1, m[i - 1][j] + 1,
+						m[i][j - 1] + 1);
 			}
-			m[i][j] = minimum(m[i - 1][j - 1] + cost_of_substitution,
-					m[i - 1][j] + 1, m[i][j - 1] + 1);
+
 		}
 	}
 
@@ -88,7 +89,7 @@ int edit_distance(string s1, string s2)
 int main()
 {
 
-	cout << "Edit distance = " << edit_distance("sauron", "saruman");
+	cout << "Edit distance = " << edit_distance("ciao", "letto");
 
 	return 0;
 }
