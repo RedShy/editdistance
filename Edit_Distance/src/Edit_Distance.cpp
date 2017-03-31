@@ -4,7 +4,6 @@ using namespace std;
 
 int minimum(int a, int b, int c)
 {
-
 	int min = a;
 
 	if (b < min) min = b;
